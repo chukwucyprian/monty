@@ -9,13 +9,13 @@ void push(stack_t **head, unsigned int line_number)
 {
 	int data, i = 0;
 
-	if (glob_var.func == NULL)
+	if (strcmp(glob_var.func, "") == 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free_glob_var();
 		exit(EXIT_FAILURE);
 	}
-	while (glob_var.func[i])
+	while (glob_var.func[i] != '\0')
 	{
 		if (!isdigit(glob_var.func[i]))
 		{
@@ -57,7 +57,7 @@ void pint(stack_t **head, unsigned int line_num)
 
 	if (!temp)
 	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_num);
+		fprintf(stderr, "L%d: can't pint,  empty stack\n", line_num);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", temp->n);
@@ -102,4 +102,3 @@ void swap(stack_t **head, unsigned int line_num)
 	temp->prev = tmp;
 	tmp->prev = NULL;
 }
-
