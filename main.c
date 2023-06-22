@@ -54,6 +54,11 @@ int main(int argc, char *argv[])
 	globv.top = NULL;
 	globv.line_idx = 1;
 	globv.opcode = malloc(250);
+	if (globv.opcode == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 	globv.arg = NULL;
 
 	while (fgets(globv.opcode, size, globv.fd))
