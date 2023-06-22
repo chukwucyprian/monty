@@ -3,25 +3,13 @@
 get_opc_t globv;
 
 /**
- * init_globv - initializes the global variables
- * @fd: file descriptor
- * Return: nothing
- */
-void init_globv(FILE *fd)
-{
-	globv.arg = NULL;
-	globv.linear = 1;
-	globv.line_idx = 1;
-	globv.top = NULL;
-	globv.fd = fd;
-}
-/**
  * free_globv - frees the global variables
  * Return: nothing
  */
 void free_globv(void)
 {
 	free_stack(globv.top);
+	free(globv.opcode);
 	fclose(globv.fd);
 }
 /**
@@ -59,14 +47,16 @@ FILE *check_args(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
 	void (*f)(stack_t **stack, unsigned int idx);
-	FILE *fd;
 	int size = 250;
 	char *str;
 
-	fd = check_args(argc, argv);
-	init_globv(fd);
+	globv.fd = check_args(argc, argv);
+	globv.top = NULL;
+	globv.line_idx = 1;
+	globv.opcode = malloc(250);
+	globv.arg = NULL;
 
-	while (fgets(globv.opcode, size, fd))
+	while (fgets(globv.opcode, size, globv.fd))
 	{
 		remove_new_line(globv.opcode);
 		space_handle(globv.opcode);

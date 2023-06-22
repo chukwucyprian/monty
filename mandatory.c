@@ -67,10 +67,13 @@ void nop(stack_t **head, unsigned int idx)
  */
 void free_stack(stack_t *head)
 {
+	stack_t *ptr = head;
+
 	while (head)
 	{
 		head = head->next;
-		free(head->prev);
+		free(ptr);
+		ptr = head;
 	}
 }
 

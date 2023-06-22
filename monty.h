@@ -41,7 +41,6 @@ typedef struct instruction_s
  * struct get_opc - structure used to generate opcodes
  * @func: second main argument
  * @first_arg: third argument of main function
- * @linear: stack or queue
  * @line_idx: line number
  * @list: stack_t variable
  * @fd: file descriptor
@@ -49,8 +48,7 @@ typedef struct instruction_s
 typedef struct get_opc
 {
 	char *arg;
-	char opcode[250];
-	int linear;
+	char *opcode;
 	unsigned int line_idx;
 	stack_t *top;
 	FILE *fd;

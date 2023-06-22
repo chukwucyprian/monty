@@ -4,7 +4,7 @@
  * @str: string
  * Return: nothing
  */
-void remove_new_line(char str[])
+void remove_new_line(char *str)
 {
 	int i = 0;
 
@@ -22,7 +22,7 @@ void remove_new_line(char str[])
  * @str: buffer or string
  * Return: nothing
  */
-void space_handle(char str[])
+void space_handle(char *str)
 {
 	int len, j = 0, i = 0;
 	char strc[250];

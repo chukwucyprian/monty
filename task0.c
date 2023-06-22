@@ -8,6 +8,7 @@
 void push(stack_t **head, unsigned int line_number)
 {
 	int data, i;
+	stack_t *new, *ptr;
 
 	if (strcmp(globv.arg, "") == 0)
 	{
@@ -17,7 +18,7 @@ void push(stack_t **head, unsigned int line_number)
 	}
 	for (i = 0; globv.arg[i] != '\0'; i++)
 	{
-		if ((globv.arg[i] < '0' || globv.arg[i] > '9') && globv.arg[i] != '-')
+		if ((globv.arg[i] < 0 || globv.arg[i] > 9) && globv.arg[i] != '-')
 		{
 			fprintf(stderr, "L%u: usage: push integer\n", line_number);
 			free_globv();
@@ -25,7 +26,23 @@ void push(stack_t **head, unsigned int line_number)
 		}
 	}
 	data = atoi(globv.arg);
-	add_node(head, data);
+	new = malloc(sizeof(stack_t));
+	if (!new)
+	{
+		fprintf(stderr, "memory allacation error\n");
+		exit(EXIT_FAILURE);
+	}
+	ptr = *head;
+	new->n = data;
+	new->prev = NULL;
+	if (!ptr)
+		new->next = NULL;
+	else
+	{
+		new->next = ptr;
+		ptr->prev = new;
+	}
+	(*head) = new;
 }
 /**
  * pall - displays stack content
