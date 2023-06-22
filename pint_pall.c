@@ -61,4 +61,20 @@ void pall(stack_t **head, unsigned int line)
 		temp = temp->next;
 	}
 }
+/**
+ * pint - displays top element of a stack
+ * @head: linked list's head
+ * @line_num: line number
+ * Return: nothing
+ */
+void pint(stack_t **head, unsigned int line_num)
+{
+	stack_t *temp = *head;
 
+	if (!temp)
+	{
+		fprintf(stderr, "L%d: can't pint,  empty stack\n", line_num);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", temp->n);
+}
