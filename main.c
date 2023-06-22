@@ -1,28 +1,28 @@
 #include "monty.h"
 
-get_opc_t glob_var;
+get_opc_t globv;
 
 /**
- * init_glob_var - initializes the global variables
+ * init_globv - initializes the global variables
  * @fd: file descriptor
  * Return: nothing
  */
-void init_glob_var(FILE *fd)
+void init_globv(FILE *fd)
 {
-	glob_var.func = NULL;
-	glob_var.linear = 1;
-	glob_var.line_idx = 1;
-	glob_var.top = NULL;
-	glob_var.fd = fd;
+	globv.arg = NULL;
+	globv.linear = 1;
+	globv.line_idx = 1;
+	globv.top = NULL;
+	globv.fd = fd;
 }
 /**
- * free_glob_var - frees the global variables
+ * free_globv - frees the global variables
  * Return: nothing
  */
-void free_glob_var(void)
+void free_globv(void)
 {
-	free_stack(glob_var.top);
-	fclose(glob_var.fd);
+	free_stack(globv.top);
+	fclose(globv.fd);
 }
 /**
  * check_args - checks file existance
@@ -61,31 +61,33 @@ int main(int argc, char *argv[])
 	void (*f)(stack_t **stack, unsigned int idx);
 	FILE *fd;
 	int size = 250;
-	char *arr_str[2] = {NULL, NULL};
+	char *str;
 
 	fd = check_args(argc, argv);
-	init_glob_var(fd);
+	init_globv(fd);
 
-	while (fgets(glob_var.first_arg, size, fd))
+	while (fgets(globv.opcode, size, fd))
 	{
-		arr_str[0] = strtok(glob_var.first_arg, "\n ");
-		if (arr_str[0] && arr_str[0][0] != '#')
+		remove_new_line(globv.opcode);
+		space_handle(globv.opcode);
+		str = strtok(globv.opcode, " ");
+		if (str && str[0] != '#')
 		{
-			f = gen_opcodes(arr_str[0]);
+			f = gen_opcodes(str);
 			if (!f)
 			{
-				fprintf(stderr, "L%u: ", glob_var.line_idx);
-				fprintf(stderr, "unknown instruction %s\n", arr_str[0]);
-				free_glob_var();
+				fprintf(stderr, "L%u: ", globv.line_idx);
+				fprintf(stderr, "unknown instruction %s\n", str);
+				free_globv();
 				exit(EXIT_FAILURE);
 			}
-			glob_var.func = strtok(NULL, "\n ");
-			f(&glob_var.top, glob_var.line_idx);
+			globv.arg = strtok(NULL, " ");
+			f(&globv.top, globv.line_idx);
 		}
-		glob_var.line_idx++;
+		globv.line_idx++;
 	}
 
-	free_glob_var();
+	free_globv();
 
 	return (0);
 }

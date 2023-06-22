@@ -7,26 +7,25 @@
  */
 void push(stack_t **head, unsigned int line_number)
 {
-	int data, i = 0;
+	int data, i;
 
-	if (glob_var.func == NULL)
+	if (strcmp(globv.arg, "") == 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		free_glob_var();
+		free_globv();
 		exit(EXIT_FAILURE);
 	}
-	while (glob_var.func[i])
+	for (i = 0; globv.arg[i] != '\0'; i++)
 	{
-		if (!isdigit(glob_var.func[i]))
+		if ((globv.arg[i] < '0' || globv.arg[i] > '9') && globv.arg[i] != '-')
 		{
 			fprintf(stderr, "L%u: usage: push integer\n", line_number);
-			free_glob_var();
+			free_globv();
 			exit(EXIT_FAILURE);
 		}
-		i++;
 	}
-	data = atoi(glob_var.func);
-	addnode(head, data);
+	data = atoi(globv.arg);
+	add_node(head, data);
 }
 /**
  * pall - displays stack content
@@ -70,16 +69,13 @@ void pint(stack_t **head, unsigned int line_num)
  */
 void pop(stack_t **head, unsigned int line_num)
 {
-	stack_t *temp = *head;
-
-	if (temp == NULL)
+	if (*head == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_num);
 		exit(EXIT_FAILURE);
 	}
-	printf("%d\n", temp->n);
-	*head = temp->next;
-	free(temp);
+	*head = (*head)->next;
+	free((*head)->prev);
 }
 /**
  * swap - swaps two top  most stack elements

@@ -41,7 +41,7 @@ void add(stack_t **head, unsigned int line_num)
 	{
 		fprintf(stderr, "L%u: ", line_num);
 		fprintf(stderr, "can't add, stack too short\n");
-		free_glob_var();
+		free_globv();
 		exit(EXIT_FAILURE);
 	}
 	temp->next->n += temp->n;
@@ -72,37 +72,5 @@ void free_stack(stack_t *head)
 		head = head->next;
 		free(head->prev);
 	}
-}
-/**
- * addnode - adds a node at the begining of stack
- * @head: stack top
- * @data: integer
- * Return: new address
- */
-stack_t *addnode(stack_t **head, int data)
-{
-	stack_t *new_elem;
-
-	new_elem = malloc(sizeof(stack_t));
-	if (!new_elem)
-	{
-		fprintf(stderr, "memory allacation error\n");
-		exit(EXIT_FAILURE);
-	}
-	new_elem->n = data;
-	if (*head == NULL)
-	{
-		new_elem->next = *head;
-		new_elem->prev = NULL;
-		*head = new_elem;
-	}
-	else
-	{
-		(*head)->prev = new_elem;
-		new_elem->next = *head;
-		new_elem->prev = NULL;
-		*head = new_elem;
-	}
-	return (*head);
 }
 

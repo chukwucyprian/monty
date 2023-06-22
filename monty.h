@@ -48,15 +48,15 @@ typedef struct instruction_s
  */
 typedef struct get_opc
 {
-	char *func;
-	char first_arg[250];
+	char *arg;
+	char opcode[250];
 	int linear;
 	unsigned int line_idx;
 	stack_t *top;
 	FILE *fd;
 } get_opc_t;
 
-extern get_opc_t glob_var;
+extern get_opc_t globv;
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number);
 void pint(stack_t **head, unsigned int line_number);
@@ -66,7 +66,9 @@ void add(stack_t **head, unsigned int line_number);
 void nop(stack_t **head, unsigned int line_number);
 void (*gen_opcodes(char *opc))(stack_t **linear_stack, unsigned int line_idx);
 void free_stack(stack_t *head);
-void free_glob_var();
-stack_t *addnode(stack_t **head, int data);
+void free_globv();
+stack_t *add_node(stack_t **head, int data);
+void remove_new_line(char str[]);
+void space_handle(char str[]);
 #endif
 
