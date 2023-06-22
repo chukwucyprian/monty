@@ -56,7 +56,7 @@ void pint(stack_t **head, unsigned int line_num)
 
 	if (!temp)
 	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_num);
+		fprintf(stderr, "L%d: can't pint,  empty stack\n", line_num);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", temp->n);
@@ -98,4 +98,3 @@ void swap(stack_t **head, unsigned int line_num)
 	temp->prev = tmp;
 	tmp->prev = NULL;
 }
-

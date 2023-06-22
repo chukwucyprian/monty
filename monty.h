@@ -62,7 +62,7 @@ void pall(stack_t **head, unsigned int line_number);
 void pint(stack_t **head, unsigned int line_number);
 void pop(stack_t **head, unsigned int line_number);
 void swap(stack_t **head, unsigned int line_number);
-void add(stack_t **head, unsigned int line_number);
+void add(stack_t **head, unsigned int line_num);
 void nop(stack_t **head, unsigned int line_number);
 void (*gen_opcodes(char *opc))(stack_t **linear_stack, unsigned int line_idx);
 void free_stack(stack_t *head);
@@ -70,5 +70,8 @@ void free_globv();
 stack_t *add_node(stack_t **head, int data);
 void remove_new_line(char str[]);
 void space_handle(char str[]);
+void sub(stack_t **head, unsigned int line_num);
+void mul(stack_t **head, unsigned int line_num);
+void mod(stack_t **head, unsigned int line_num);
 #endif
 
