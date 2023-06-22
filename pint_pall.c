@@ -45,6 +45,23 @@ void push(stack_t **head, unsigned int line_number)
 	(*head) = new;
 }
 /**
+ * pall - displays stack content
+ * @head: linked list's head
+ * @line: line number
+ * Return: nothing
+ */
+void pall(stack_t **head, unsigned int line)
+{
+	stack_t *temp = *head;
+
+	(void)line;
+	while (temp)
+	{
+		printf("%d\n", temp->n);
+		temp = temp->next;
+	}
+}
+/**
  * pint - displays top element of a stack
  * @head: linked list's head
  * @line_num: line number
@@ -61,4 +78,3 @@ void pint(stack_t **head, unsigned int line_num)
 	}
 	printf("%d\n", temp->n);
 }
-
