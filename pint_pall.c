@@ -78,22 +78,4 @@ void pint(stack_t **head, unsigned int line_num)
 	}
 	printf("%d\n", temp->n);
 }
-/**
- * pop - pops the top most stack element
- * @head: linked list's head
- * @line_num: line number
- * Return: nothing
- */
-void pop(stack_t **head, unsigned int line_num)
-{
-	stack_t *ptr = *head;
-
-	if (ptr == NULL)
-	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", line_num);
-		exit(EXIT_FAILURE);
-	}
-	*head = ptr->next;
-	free(ptr);
-}
 
