@@ -8,7 +8,6 @@ void (*gen_opcodes(char *opc))(stack_t **linear_stack, unsigned int line_idx)
 {
 	instruction_t instruct[] = {
 		{"push", push},
-		{"pall", pall},
 		{"pint", pint},
 		{NULL, NULL}
 	};
