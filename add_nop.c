@@ -44,7 +44,7 @@ void sub(stack_t **head, unsigned int line_num)
 	if (!temp || !temp->next)
 	{
 		fprintf(stderr, "L%u: ", line_num);
-		fprintf(stderr, "can't add, stack too short\n");
+		fprintf(stderr, "can't sub, stack too short\n");
 		free_globv();
 		exit(EXIT_FAILURE);
 	}
