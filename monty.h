@@ -69,6 +69,7 @@ stack_t *add_node(stack_t **head, int data);
 void remove_new_line(char str[]);
 void space_handle(char str[]);
 void sub(stack_t **head, unsigned int line_num);
+void _div(stack_t **head, unsigned int line_num);
 void mul(stack_t **head, unsigned int line_num);
 void mod(stack_t **head, unsigned int line_num);
 #endif
