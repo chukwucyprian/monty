@@ -76,6 +76,46 @@ void pint(stack_t **head, unsigned int line_num)
 		fprintf(stderr, "L%d: can't pint,  empty stack\n", line_num);
 		exit(EXIT_FAILURE);
 	}
-	fprintf(stdout, "%d\n", temp->n);
+	printf("%d\n", temp->n);
+}
+/**
+ * pop - pops the top most stack element
+ * @head: linked list's head
+ * @line_num: line number
+ * Return: nothing
+ */
+void pop(stack_t **head, unsigned int line_num)
+{
+	stack_t *ptr = *head;
+
+	if (ptr == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_num);
+		exit(EXIT_FAILURE);
+	}
+	*head = ptr->next;
+	free(ptr);
+}
+/**
+ * swap - swaps two top  most stack elements
+ * @head: linked list's head
+ * @line_num: line number
+ * Return: nothing
+ */
+void swap(stack_t **head, unsigned int line_num)
+{
+	stack_t *ptr = *head;
+
+	if (!ptr || !(ptr->next))
+	{
+		fprintf(stderr, "L%d: can't swap", line_num);
+		fprintf(stderr, ", stack too short\n");
+		exit(EXIT_FAILURE);
+	}
+	*head = (*head)->next;
+	ptr->next = (*head)->next;
+	ptr->prev = *head;
+	(*head)->next = ptr;
+	(*head)->prev = NULL;
 }
 
