@@ -18,6 +18,10 @@ void (*gen_opcodes(char *opc))(stack_t **linear_stack, unsigned int line_idx)
 		{"div", _div},
 		{"mul", mul},
 		{"mod", mod},
+		{"pchar", pchar},
+		{"pstr", pstr},
+		{"rotl", rotl},
+		{"rot1", rotr},
 		{NULL, NULL}
 	};
 	int i = 0;
