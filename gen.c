@@ -13,6 +13,7 @@ void (*gen_opcodes(char *opc))(stack_t **linear_stack, unsigned int line_idx)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
+		{"nop", nop},
 		{NULL, NULL}
 	};
 	int i = 0;

@@ -20,4 +20,14 @@ void add(stack_t **head, unsigned int line_num)
 	*head = temp->next;
 	free(temp);
 }
-
+/**
+ * nop - does nothing
+ * @head: linked list's head
+ * @idx: line number
+ * Return: nothing
+ */
+void nop(stack_t **head, unsigned int idx)
+{
+	(void)head;
+	(void)idx;
+}
