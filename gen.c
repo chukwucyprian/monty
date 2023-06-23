@@ -17,6 +17,7 @@ void (*gen_opcodes(char *opc))(stack_t **linear_stack, unsigned int line_idx)
 		{"sub", sub},
 		{"div", _div},
 		{"mul", mul},
+		{"mod", mod},
 		{NULL, NULL}
 	};
 	int i = 0;
