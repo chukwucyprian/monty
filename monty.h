@@ -49,6 +49,7 @@ typedef struct get_opc
 {
 	char *arg;
 	char *opcode;
+	int type;
 	unsigned int line_idx;
 	stack_t *top;
 	FILE *fd;
@@ -77,5 +78,10 @@ void pchar(stack_t **head, unsigned int line_num);
 void pstr(stack_t **head, unsigned int line_num);
 void rotl(stack_t **head, unsigned int line_num);
 void rotr(stack_t **head, unsigned int line_num);
+void stack(stack_t **head, unsigned int line_num);
+void queue(stack_t **head, unsigned int line_num);
+void check_if_comment(char *str);
+stack_t *add_to_queue(stack_t **head, int data);
+stack_t *add_to_stack(stack_t **head, int data);
 #endif
 

@@ -8,7 +8,6 @@
 void push(stack_t **head, unsigned int line_number)
 {
 	int data, i;
-	stack_t *new, *ptr;
 
 	if (strcmp(globv.arg, "") == 0)
 	{
@@ -26,23 +25,10 @@ void push(stack_t **head, unsigned int line_number)
 		}
 	}
 	data = atoi(globv.arg);
-	new = malloc(sizeof(stack_t));
-	if (!new)
-	{
-		fprintf(stderr, "memory allacation error\n");
-		exit(EXIT_FAILURE);
-	}
-	ptr = *head;
-	new->n = data;
-	new->prev = NULL;
-	if (!ptr)
-		new->next = NULL;
+	if (!globv.type)
+		add_to_queue(head, data);
 	else
-	{
-		new->next = ptr;
-		ptr->prev = new;
-	}
-	(*head) = new;
+		add_to_stack(head, data);
 }
 /**
  * pall - displays stack content

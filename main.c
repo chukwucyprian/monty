@@ -60,13 +60,16 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	globv.arg = NULL;
+	globv.type = 1;
 
 	while (fgets(globv.opcode, size, globv.fd))
 	{
 		remove_new_line(globv.opcode);
 		space_handle(globv.opcode);
+		check_if_comment(globv.opcode);
 		str = strtok(globv.opcode, " ");
-		if (str && str[0] != '#')
+
+		if (str)
 		{
 			f = gen_opcodes(str);
 			if (!f)
@@ -81,8 +84,7 @@ int main(int argc, char *argv[])
 		}
 		globv.line_idx++;
 	}
-
 	free_globv();
-
 	return (0);
 }
+

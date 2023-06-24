@@ -94,4 +94,28 @@ void rotr(stack_t **head, unsigned int line_num)
 		last->prev = NULL;
 	}
 }
+/**
+ * check_if_comment - checks wheter the string is a comment or not
+ * @str: string
+ * Return: nothing
+ */
+void check_if_comment(char *str)
+{
+	int i = 0;
+	char const *buffer = "nop";
+
+	if (str[i] == '#')
+	{
+		i = strlen(str) - 1;
+		while (i >= 0)
+			str[i--] = '\0';
+		i = 0;
+		while (buffer[i])
+		{
+			str[i] = buffer[i];
+			i++;
+		}
+		str[i] = buffer[i];
+	}
+}
 
