@@ -40,9 +40,8 @@ void pstr(stack_t **head, unsigned int line_num)
 	{
 		printf("%c", temp->n);
 		temp = temp->next;
-		if (!temp || (temp->n <= 0 || temp->n > 127))
-			printf("\n");
 	}
+	printf("\n");
 }
 /**
  * rotl - rotates the stack to the top

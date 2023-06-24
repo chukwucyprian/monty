@@ -25,6 +25,7 @@ void (*gen_opcodes(char *opc))(stack_t **linear_stack, unsigned int line_idx)
 		{"stack", stack},
 		{"queue", queue},
 		{"rotr", rotr},
+		{"pstr", pstr},
 		{NULL, NULL}
 	};
 	int i = 0;
