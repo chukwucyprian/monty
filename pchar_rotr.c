@@ -77,21 +77,23 @@ void rotl(stack_t **head, unsigned int line_num)
  */
 void rotr(stack_t **head, unsigned int line_num)
 {
-	stack_t *temp = *head;
+	stack_t *first = *head;
 	stack_t *last = *head;
 
 	(void)line_num;
 
-	if (*head && (*head)->next)
+	if (first)
 	{
 		while (last->next)
 			last = last->next;
-
-		last->next = temp;
-		temp->prev = last;
-		*head = last;
-		last->prev->next = NULL;
-		last->prev = NULL;
+		if (last != first)
+		{
+			last->prev->next = last->next;
+			last->next = first;
+			first->prev = last;
+			last->prev = NULL;
+			*head = last;
+		}
 	}
 }
 /**
