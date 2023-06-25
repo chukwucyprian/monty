@@ -48,7 +48,7 @@ typedef struct instruction_s
 typedef struct get_opc
 {
 	char *arg;
-	char *opcode;
+	char opcode[250];
 	int type;
 	unsigned int line_idx;
 	stack_t *top;

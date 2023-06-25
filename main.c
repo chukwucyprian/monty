@@ -9,7 +9,6 @@ get_opc_t globv;
 void free_globv(void)
 {
 	free_stack(globv.top);
-	free(globv.opcode);
 	fclose(globv.fd);
 }
 /**
@@ -53,16 +52,10 @@ int main(int argc, char *argv[])
 	globv.fd = check_args(argc, argv);
 	globv.top = NULL;
 	globv.line_idx = 1;
-	globv.opcode = malloc(250);
-	if (globv.opcode == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
 	globv.arg = NULL;
 	globv.type = 1;
 
-	while (fgets(globv.opcode, size, globv.fd))
+	while (fgets(globv.opcode, size + 1, globv.fd))
 	{
 		remove_new_line(globv.opcode);
 		space_handle(globv.opcode);

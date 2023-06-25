@@ -27,11 +27,16 @@ void space_handle(char *str)
 	int len, j = 0, i = 0;
 	char strc[250];
 
-	len = strlen(str) - 1;
-	while (str[i] == ' ')
+	for (len = 0; str[len] != '\0'; len++)
+		;
+	while (str[i] != '\0' && str[i] == ' ')
 		i++;
-	while (str[len] == ' ' && len >= 0)
-		str[len--] = '\0';
+	if (len)
+	{
+		len--;
+		while (str[len] == ' ' && len >= 0)
+			str[len--] = '\0';
+	}
 	while (str[i] != '\0')
 	{
 		if (str[i] != ' ')
@@ -48,12 +53,14 @@ void space_handle(char *str)
 		i++;
 	}
 	strc[j] = str[i];
-	i = strlen(str) - 1;
-	if (i >= 0)
+	for (i = 0; str[i] != '\0'; i++)
+	if (i > 0)
 	{
+		i--;
 		while (str[i])
 			str[i--] = '\0';
 	}
-	strcpy(str, strc);
+	if (strc[0])
+		strcpy(str, strc);
 }
 
