@@ -23,7 +23,7 @@ FILE *check_args(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		fprintf(stderr, "USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty /monty\n");
 		exit(EXIT_FAILURE);
 	}
 
